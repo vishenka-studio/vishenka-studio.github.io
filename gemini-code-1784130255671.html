@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vishenka Studio | AI & Prompts</title>
+    
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+
+    <!-- Подключаем чистые шрифты -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            /* Премиальная палитра: глубокий темный и вишневый */
+            --bg-base: #0a0505; 
+            --cherry-red: #d90429;
+            --cherry-dark: #8a031a;
+            --text-main: #ffffff;
+            --text-muted: #e0e0e0;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-base);
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-main);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+            
+            /* Элегантный фоновый градиент */
+            background-image: radial-gradient(circle at 50% 0%, rgba(217, 4, 41, 0.15) 0%, transparent 60%);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 420px;
+            padding: 50px 20px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 10;
+        }
+
+        /* АВАТАР */
+        .avatar-complex {
+            position: relative;
+            width: 160px;
+            height: 160px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .avatar-img {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            background-image: url('avatar.jpg');
+            background-size: cover;
+            background-position: center;
+            border: 2px solid rgba(255,255,255,0.1);
+            box-shadow: 0 10px 30px rgba(217, 4, 41, 0.4);
+            z-index: 10;
+        }
+
+        /* Деликатное свечение вокруг аватара */
+        .ring-glow {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(217, 4, 41, 0.2) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.95); opacity: 0.5; }
+            50% { transform: scale(1.05); opacity: 1; }
+            100% { transform: scale(0.95); opacity: 0.5; }
+        }
+
+        /* ТЕКСТЫ (Чисто белые) */
+        h1 {
+            font-size: 26px;
+            font-weight: 700;
+            margin: 0 0 8px 0;
+            letter-spacing: 1px;
+            color: var(--text-main);
+            text-align: center;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            text-align: center;
+            font-weight: 400;
+            line-height: 1.4;
+        }
+
+        /* КНОПКИ (Premium Glassmorphism) */
+        .btn-stack {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .btn {
+            position: relative;
+            display: flex;
+            align-items: center;
+            padding: 18px 20px;
+            border-radius: 16px;
+            text-decoration: none;
+            color: var(--text-main);
+            
+            /* Матовое стекло */
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        /* Вишневый акцент при наведении */
+        .btn:hover {
+            transform: translateY(-3px);
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(217, 4, 41, 0.5);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3), 0 0 15px rgba(217, 4, 41, 0.2);
+        }
+
+        .btn-text {
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 1.3;
+            width: 100%;
+            text-align: center;
+        }
+
+        /* Иконка ТГ */
+        .icon-box {
+            position: absolute;
+            left: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: rgba(217, 4, 41, 0.15);
+        }
+
+        .tg-svg {
+            width: 18px;
+            height: 18px;
+            fill: #fff;
+        }
+
+        /* Плашка для обучения мультикам */
+        .tag-hot {
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            background: linear-gradient(135deg, var(--cherry-red), var(--cherry-dark));
+            color: #fff;
+            font-size: 10px;
+            padding: 4px 10px;
+            border-radius: 8px;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 10px rgba(217, 4, 41, 0.4);
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <div class="avatar-complex">
+            <div class="ring-glow"></div>
+            <div class="avatar-img"></div>
+        </div>
+
+        <h1>Vishenka Studio</h1>
+        <div class="subtitle">Нейросети, автоматизация и создание AI-контента</div>
+
+        <div class="btn-stack">
+            
+            <a href="https://t.me/vishenka_studio_ai" class="btn" target="_blank">
+                <div class="icon-box">
+                    <svg class="tg-svg" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.89 8.24l-1.95 9.17c-.15.65-.53.81-1.07.5l-2.95-2.18-1.42 1.37c-.16.16-.29.29-.6.29l.21-3.02 5.5-4.97c.24-.22-.05-.34-.37-.13l-6.8 4.28-2.93-.91c-.64-.2-.65-.64.13-.95l11.45-4.41c.53-.2.99.12.8.96z"/></svg>
+                </div>
+                <div class="btn-text">Канал с промптами 🍒🫦</div>
+            </a>
+
+            <a href="https://t.me/matrixai_robot?start=r-6713541760" class="btn" target="_blank">
+                <div class="icon-box">
+                    <svg class="tg-svg" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.89 8.24l-1.95 9.17c-.15.65-.53.81-1.07.5l-2.95-2.18-1.42 1.37c-.16.16-.29.29-.6.29l.21-3.02 5.5-4.97c.24-.22-.05-.34-.37-.13l-6.8 4.28-2.93-.91c-.64-.2-.65-.64.13-.95l11.45-4.41c.53-.2.99.12.8.96z"/></svg>
+                </div>
+                <div class="btn-text">Бот для генераций<br>с множеством нейросетей</div>
+            </a>
+
+            <a href="https://t.me/promptx_aibot?start=ref6713541760" class="btn" target="_blank">
+                <div class="icon-box">
+                    <svg class="tg-svg" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.89 8.24l-1.95 9.17c-.15.65-.53.81-1.07.5l-2.95-2.18-1.42 1.37c-.16.16-.29.29-.6.29l.21-3.02 5.5-4.97c.24-.22-.05-.34-.37-.13l-6.8 4.28-2.93-.91c-.64-.2-.65-.64.13-.95l11.45-4.41c.53-.2.99.12.8.96z"/></svg>
+                </div>
+                <div class="btn-text">Бот с удобными<br>шаблонами трендов</div>
+            </a>
+
+            <a href="https://t.me/tribute/app?startapp=sXLh" class="btn" style="border-color: rgba(217, 4, 41, 0.4); background: rgba(255,255,255,0.05);" target="_blank">
+                <span class="tag-hot">Premium</span>
+                <div class="icon-box" style="background: rgba(217, 4, 41, 0.3);">
+                    <svg class="tg-svg" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.89 8.24l-1.95 9.17c-.15.65-.53.81-1.07.5l-2.95-2.18-1.42 1.37c-.16.16-.29.29-.6.29l.21-3.02 5.5-4.97c.24-.22-.05-.34-.37-.13l-6.8 4.28-2.93-.91c-.64-.2-.65-.64.13-.95l11.45-4.41c.53-.2.99.12.8.96z"/></svg>
+                </div>
+                <div class="btn-text">Обучение ИИ мультфильмам 🔥</div>
+            </a>
+
+        </div>
+    </div>
+
+</body>
+</html>
